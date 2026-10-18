@@ -36,6 +36,17 @@ No .NET SDK needed. `build.ps1` compiles with the C# compiler that ships with th
 .\build.ps1 -Install                 # also copy it into the plugin folder
 ```
 
+## Testing
+
+`scripts\` checks placement in a running Store QuickLook without touching the keyboard or mouse:
+
+- `preview-steps.ps1` opens and closes previews on a chosen monitor and prints or captures the window. It puts a magenta window behind the preview to make that monitor active, so expect it to flash. Windows won't hand it focus while you're typing; it stops and says so.
+- `build-debug.ps1` installs a build that logs every placement message to `Public\Documents\sp-debug.log`. `-Restore` puts the normal build back. Both restart QuickLook.
+
+```powershell
+.\scripts\preview-steps.ps1 -Steps 'm2,t:C:\notes\a.md,tree,cap:C:\temp\a.png,c'
+```
+
 ## Caveats
 
 - The plugin reads QuickLook internals by reflection: `ViewWindowManager._viewerWindow`, `ViewerWindow._path`, `ViewerWindow.Pinned` and `ViewerWindow.ContextObject`. A QuickLook release that renames the first two switches the plugin off: previews go back to QuickLook's usual placement, and one line in QuickLook's log says so. Tested on QuickLook 4.5.0; the names were still present in QuickLook's source on 2026-09-14.
