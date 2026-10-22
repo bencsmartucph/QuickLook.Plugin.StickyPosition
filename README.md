@@ -2,6 +2,10 @@
 
 A [QuickLook](https://github.com/QL-Win/QuickLook) plugin that remembers where you put the preview window, **per file type**, and opens it there every time, with no jump.
 
+**Why:** QuickLook opens every preview in the middle of the screen, so a preview you keep beside your work has to be dragged back there every time you press <kbd>Space</kbd>.
+
+![Drag a .yml preview to the top right once; the next .yml file opens there](docs/demo.gif)
+
 - Drag or resize a `.pdf` preview once, and every `.pdf` opens in that spot at that size. Markdown, images and folders each keep their own spot.
 - File types you haven't placed yet open wherever QuickLook puts them, as if the plugin weren't installed. You can set a default position for them instead (see below).
 - The window never flashes somewhere else first. QuickLook works out the window's position *before* it shows it, and the plugin changes that position at that moment, by rewriting `WM_WINDOWPOSCHANGING` on the viewer window. Plugins that move the window afterwards always show a visible jump.
